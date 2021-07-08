@@ -3,15 +3,15 @@ import { View, FlatList, Text, Image, StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
     TextH1: {
-      fontSize: 30,
-      margin: 10,
-      margin: 'auto',
+        fontSize: 30,
+        margin: 10,
+        margin: 'auto',
     },
-  });
+});
 
 export default class List extends Component {
-    constructor(props) {
-        super(props)
+    constructor() {
+        super()
         this.state = {
             countries: []
         }
@@ -28,20 +28,23 @@ export default class List extends Component {
             console.error(error)
         }
     }
-    
+
     renderItem({ item }) {
-        console.log(item)
+        console.log(item.flag)
         return (
             <View style={styles.TextH1}>
-                <Text>Country : {item.name}</Text>
+                <Text>
+                    {"\n"}
+                    {"\n"}
+                    Country : {item.name}</Text>
                 <Text>Capital : {item.capital}
                     {"\n"}
                     {"\n"}
                 </Text>
                 <Image
-                    source={{ uri: ` ${ item.flag }` }}
+                    source={{ uri: ` ${item.flag}` }}
                     style={{ width: 200, height: 100 }} />
-                
+
             </View>
         );
     }
@@ -50,10 +53,9 @@ export default class List extends Component {
             <FlatList
                 data={this.state.countries}
                 renderItem={this.renderItem}
-                keyExtractor={(item, index) => index.toString()}
             />
         );
 
     };
-      
+
 }
